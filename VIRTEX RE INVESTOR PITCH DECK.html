@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Virtex Solutions — Investor Pitch Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+a{color:inherit;}
+:root{
+  --red:#DD1D1D;--dark-red:#8A1212;
+  --dark:#0C0C0C;--dark2:#141414;--dark3:#1E1E1E;
+  --td:#F2F2F0;--md:#888;--bd:#2A2A2A;
+  --bl:#F7F6F3;--white:#FFF;--blight:#E2E0DB;
+  --tl:#111;--ml:#5A5A5A;
+  --green:#2ECC71;--gd:#1A9E5C;--amber:#C47F17;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;}
+.deck{width:100%;height:100vh;position:relative;overflow:hidden;}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .45s ease,transform .45s ease;transform:translateY(16px);}
+.slide.active{opacity:1;pointer-events:all;transform:translateY(0);}
+.slide.exit{opacity:0;transform:translateY(-16px);}
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--red);transition:width .4s ease;z-index:200;}
+.nav{position:fixed;bottom:.7rem;right:.9rem;display:flex;align-items:center;gap:.3rem;z-index:100;background:rgba(10,10,10,.35);backdrop-filter:blur(8px);padding:.25rem .5rem;border-radius:20px;border:1px solid rgba(255,255,255,.04);transition:opacity .2s;opacity:.4;}.nav:hover{opacity:1;}
+.nd{width:4px;height:4px;border-radius:50%;background:#333;cursor:pointer;transition:all .2s;}
+.nd.on{background:var(--red);transform:scale(1.4);}
+.nb{background:none;border:none;color:#444;cursor:pointer;font-size:.72rem;padding:.05rem .18rem;line-height:1;transition:color .18s;}
+.nb:hover{color:#fff;}
+.nl{font-family:'DM Mono',monospace;font-size:.5rem;color:#444;min-width:24px;text-align:center;}
+.tag{font-size:.56rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.22rem .6rem;border-radius:20px;display:inline-block;margin-bottom:.75rem;}
+.tag.lgt{color:var(--red);border:1px solid rgba(221,29,29,.28);}
+.tag.drk{color:rgba(221,29,29,.9);border:1px solid rgba(221,29,29,.22);}
+
+/* ── S1 COVER ── */
+#s1{background:var(--dark);}
+.s1bg{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(221,29,29,.09) 0%,transparent 55%),radial-gradient(ellipse at 10% 75%,rgba(221,29,29,.04) 0%,transparent 45%);}
+.s1grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px);background-size:70px 70px;mask-image:radial-gradient(ellipse at center,black 25%,transparent 75%);}
+.s1wrap{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1fr 420px;gap:2rem;padding:2.5rem 4rem;align-items:center;}
+.s1eye{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;}
+.s1eye::before{content:'';width:26px;height:1px;background:var(--red);}
+.s1h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5.5vw,4.8rem);font-weight:900;line-height:.98;letter-spacing:-.02em;margin-bottom:1.1rem;color:var(--td);}
+.s1h1 em{color:var(--red);font-style:italic;}
+.s1sub{font-size:.95rem;color:var(--md);line-height:1.7;max-width:480px;margin-bottom:1.75rem;}
+.s1conf{display:flex;align-items:center;gap:.7rem;font-size:.72rem;color:var(--md);}
+.s1conf-dot{width:6px;height:6px;border-radius:50%;background:var(--red);}
+.s1right{display:flex;flex-direction:column;gap:.7rem;}
+.s1card{background:var(--dark2);border:1px solid var(--bd);border-radius:12px;padding:1.2rem 1.4rem;}
+.s1card-v{font-family:'DM Mono',monospace;font-size:2.4rem;font-weight:500;color:var(--red);line-height:1;margin-bottom:.3rem;}
+.s1card-l{font-size:.74rem;color:var(--md);line-height:1.4;}
+.s1logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--td);margin-bottom:.5rem;}
+.s1logo span{color:var(--red);}
+
+/* ── S2 PROBLEM ── */
+#s2{background:var(--bl);}
+.s2wrap{flex:1;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+.s2L{padding:2.5rem 2rem 2.5rem 3.5rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--blight);}
+.s2h2{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;line-height:1.1;margin-bottom:.9rem;color:var(--tl);}
+.s2h2 em{color:var(--red);font-style:italic;}
+.s2body{font-size:.9rem;color:var(--ml);line-height:1.7;margin-bottom:1.3rem;}
+.s2stat{background:var(--white);border:1px solid var(--blight);border-left:4px solid var(--red);border-radius:0 10px 10px 0;padding:1.1rem 1.4rem;margin-bottom:.7rem;}
+.s2stat-v{font-family:'DM Mono',monospace;font-size:2.4rem;font-weight:500;color:var(--red);line-height:1;margin-bottom:.2rem;}
+.s2stat-l{font-size:.78rem;color:var(--ml);line-height:1.4;}
+.s2R{padding:2rem 3rem 2rem 2.5rem;display:flex;flex-direction:column;justify-content:center;gap:.55rem;}
+.prob-card{background:var(--white);border:1px solid var(--blight);border-radius:9px;padding:.95rem 1.1rem;display:flex;align-items:flex-start;gap:.85rem;}
+.prob-card.bad{border-color:rgba(221,29,29,.2);background:rgba(221,29,29,.025);}
+.prob-icon{font-size:1.2rem;flex-shrink:0;margin-top:.05rem;}
+.prob-title{font-size:.84rem;font-weight:600;color:var(--tl);margin-bottom:.2rem;}
+.prob-body{font-size:.76rem;color:var(--ml);line-height:1.45;}
+
+/* ── S3 SOLUTION ── */
+#s3{background:var(--dark);}
+.s3wrap{flex:1;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+.s3L{padding:2.5rem 2rem 2.5rem 3.5rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--bd);}
+.s3h2{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;line-height:1.1;margin-bottom:.8rem;color:var(--td);}
+.s3h2 em{color:var(--red);font-style:italic;}
+.s3body{font-size:.9rem;color:var(--md);line-height:1.7;margin-bottom:1.3rem;}
+.s3feat{display:flex;flex-direction:column;gap:.55rem;}
+.s3fi{display:flex;align-items:center;gap:.75rem;padding:.7rem .9rem;background:var(--dark2);border:1px solid var(--bd);border-radius:8px;}
+.s3fi-icon{font-size:1rem;flex-shrink:0;}
+.s3fi-text{font-size:.8rem;color:var(--md);line-height:1.4;}
+.s3fi-text strong{color:var(--td);font-weight:600;}
+.s3R{padding:2rem 3rem 2rem 2.5rem;display:flex;flex-direction:column;justify-content:center;gap:.65rem;}
+.diff-card{background:var(--dark2);border:1px solid var(--bd);border-radius:10px;padding:1.1rem 1.2rem;}
+.diff-label{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--md);margin-bottom:.35rem;}
+.diff-val{font-size:.88rem;font-weight:600;color:var(--td);line-height:1.4;}
+.diff-val em{color:var(--red);font-style:normal;}
+
+/* ── S4 MARKET ── */
+#s4{background:var(--white);}
+.s4wrap{flex:1;display:flex;flex-direction:column;padding:2rem 3.5rem;overflow:hidden;}
+.s4top{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:1.5rem;align-items:end;}
+.s4h2{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;line-height:1.05;color:var(--tl);}
+.s4h2 em{color:var(--red);font-style:italic;}
+.s4sub{font-size:.9rem;color:var(--ml);line-height:1.65;}
+.mkt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin-bottom:1rem;}
+.mkt-card{border-radius:12px;padding:1.4rem;display:flex;flex-direction:column;}
+.mkt-card.tam{background:rgba(221,29,29,.06);border:1px solid rgba(221,29,29,.2);}
+.mkt-card.sam{background:var(--bl);border:1px solid var(--blight);}
+.mkt-card.som{background:var(--white);border:1.5px solid var(--red);}
+.mkt-label{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ml);margin-bottom:.4rem;}
+.mkt-val{font-family:'DM Mono',monospace;font-size:2.4rem;font-weight:500;color:var(--red);line-height:1;margin-bottom:.3rem;}
+.mkt-desc{font-size:.76rem;color:var(--ml);line-height:1.45;}
+.mkt-sub{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;}
+.ms{background:var(--bl);border:1px solid var(--blight);border-radius:9px;padding:.85rem 1rem;}
+.ms-v{font-family:'DM Mono',monospace;font-size:1.5rem;font-weight:500;color:var(--red);line-height:1;margin-bottom:.2rem;}
+.ms-l{font-size:.7rem;color:var(--ml);line-height:1.35;}
+
+/* ── S5 BUSINESS MODEL ── */
+#s5{background:var(--dark);}
+.s5wrap{flex:1;display:flex;flex-direction:column;padding:2rem 3.5rem;overflow:hidden;}
+.s5h2{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;line-height:1.05;margin-bottom:.35rem;color:var(--td);}
+.s5h2 em{color:var(--red);font-style:italic;}
+.s5sub{font-size:.86rem;color:var(--md);margin-bottom:1.5rem;}
+.bm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;flex:1;}
+.bm-card{background:var(--dark2);border:1px solid var(--bd);border-radius:12px;padding:1.4rem;display:flex;flex-direction:column;}
+.bm-card.featured{border-color:var(--red);background:rgba(221,29,29,.04);}
+.bm-tier{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--md);margin-bottom:.35rem;}
+.bm-name{font-size:1.1rem;font-weight:700;color:var(--td);margin-bottom:.6rem;}
+.bm-price{font-family:'DM Mono',monospace;font-size:2.4rem;font-weight:500;color:var(--red);line-height:1;margin-bottom:.2rem;}
+.bm-price-sub{font-size:.72rem;color:var(--md);margin-bottom:.9rem;}
+.bm-div{height:1px;background:var(--bd);margin:.5rem 0;}
+.bm-row{display:flex;justify-content:space-between;align-items:center;padding:.3rem 0;}
+.bm-row-l{font-size:.75rem;color:var(--md);}
+.bm-row-v{font-family:'DM Mono',monospace;font-size:.82rem;font-weight:500;color:var(--td);}
+.bm-row-v.green{color:var(--green);}
+.bm-note{margin-top:auto;font-size:.68rem;color:var(--md);padding-top:.7rem;border-top:1px solid var(--bd);}
+.bm-bot{margin-top:1.3rem;padding-top:1.2rem;border-top:1px solid var(--bd);display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;}
+.bb{text-align:center;padding:.5rem;}
+.bb-v{font-family:'DM Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--red);}
+.bb-l{font-size:.64rem;color:var(--md);margin-top:.2rem;}
+
+/* ── S6 TRACTION ── */
+#s6{background:var(--bl);}
+.s6wrap{flex:1;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+.s6L{padding:2.5rem 2rem 2.5rem 3.5rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--blight);}
+.s6h2{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;line-height:1.1;margin-bottom:.8rem;color:var(--tl);}
+.s6h2 em{color:var(--red);font-style:italic;}
+.s6body{font-size:.88rem;color:var(--ml);line-height:1.65;margin-bottom:1.2rem;}
+.trac-items{display:flex;flex-direction:column;gap:.6rem;}
+.ti{display:flex;align-items:flex-start;gap:.85rem;padding:.9rem 1.1rem;background:var(--white);border:1px solid var(--blight);border-radius:9px;}
+.ti-icon{font-size:1.2rem;flex-shrink:0;}
+.ti-title{font-size:.84rem;font-weight:600;color:var(--tl);margin-bottom:.2rem;}
+.ti-body{font-size:.75rem;color:var(--ml);line-height:1.4;}
+.s6R{padding:2rem 3rem 2rem 2.5rem;display:flex;flex-direction:column;justify-content:center;gap:.7rem;}
+.road-title{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:.5rem;}
+.road-item{display:flex;align-items:flex-start;gap:.85rem;padding:.85rem 1rem;background:var(--white);border:1px solid var(--blight);border-radius:8px;}
+.road-q{font-family:'DM Mono',monospace;font-size:.75rem;font-weight:500;color:var(--red);min-width:45px;flex-shrink:0;margin-top:.1rem;}
+.road-text{font-size:.78rem;color:var(--ml);line-height:1.4;}
+.road-text strong{color:var(--tl);}
+
+/* ── S7 FINANCIALS ── */
+#s7{background:var(--dark);}
+.s7wrap{flex:1;display:flex;flex-direction:column;padding:2rem 3.5rem;overflow:hidden;}
+.s7h2{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;line-height:1.05;margin-bottom:.35rem;color:var(--td);}
+.s7h2 em{color:var(--red);font-style:italic;}
+.s7sub{font-size:.86rem;color:var(--md);margin-bottom:1.4rem;}
+.fin-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;flex:1;}
+.fin-card{background:var(--dark2);border:1px solid var(--bd);border-radius:12px;padding:1.3rem 1.4rem;}
+.fin-card.accent{border-color:var(--red);background:rgba(221,29,29,.04);}
+.fin-title{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--md);margin-bottom:1rem;}
+.proj-row{display:flex;align-items:center;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid var(--bd);}
+.proj-row:last-child{border-bottom:none;}
+.proj-label{font-size:.78rem;color:var(--md);}
+.proj-val{font-family:'DM Mono',monospace;font-size:.9rem;font-weight:500;color:var(--td);}
+.proj-val.green{color:var(--green);}
+.proj-val.red{color:var(--red);}
+.unit-block{display:flex;flex-direction:column;gap:.55rem;margin-bottom:.9rem;}
+.ub-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem .7rem;background:var(--dark3);border-radius:6px;}
+.ub-l{font-size:.76rem;color:var(--md);}
+.ub-v{font-family:'DM Mono',monospace;font-size:.84rem;font-weight:500;color:var(--td);}
+.ub-v.green{color:var(--green);}
+.mrr-bar-wrap{margin-top:.5rem;}
+.mrr-bar-title{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--md);margin-bottom:.75rem;}
+.mrr-bars{display:flex;flex-direction:column;gap:.5rem;}
+.mrr-row{display:flex;align-items:center;gap:.75rem;}
+.mrr-label{font-size:.72rem;color:var(--md);min-width:55px;}
+.mrr-track{flex:1;background:var(--bd);border-radius:3px;height:22px;overflow:hidden;}
+.mrr-fill{height:100%;border-radius:3px;display:flex;align-items:center;padding-left:.6rem;font-family:'DM Mono',monospace;font-size:.7rem;font-weight:500;color:#fff;transition:width .6s;}
+.mrr-val{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--td);min-width:65px;text-align:right;}
+
+/* ── S8 COMPETITIVE ── */
+#s8{background:var(--white);}
+.s8wrap{flex:1;display:flex;flex-direction:column;padding:2rem 3.5rem;overflow:hidden;}
+.s8h2{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;line-height:1.05;margin-bottom:.3rem;color:var(--tl);}
+.s8h2 em{color:var(--red);font-style:italic;}
+.s8sub{font-size:.86rem;color:var(--ml);margin-bottom:1.2rem;}
+.comp-table-wrap{flex:1;overflow:hidden;}
+.comp-table{width:100%;border-collapse:collapse;}
+.comp-table th{padding:.65rem .9rem;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ml);background:var(--bl);border:1px solid var(--blight);text-align:left;}
+.comp-table th.vx{background:rgba(221,29,29,.06);color:var(--red);}
+.comp-table td{padding:.65rem .9rem;font-size:.78rem;color:var(--ml);border:1px solid var(--blight);}
+.comp-table td.vx{background:rgba(221,29,29,.025);font-weight:500;color:var(--tl);}
+.comp-table tr:hover td{background:var(--bl);}
+.chk{color:var(--gd);font-weight:700;}
+.crs{color:#CCC;}
+.part{color:var(--amber);}
+.moat{margin-top:1rem;display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;}
+.moat-card{background:var(--bl);border:1px solid var(--blight);border-radius:9px;padding:.85rem 1rem;}
+.moat-icon{font-size:1.1rem;margin-bottom:.35rem;}
+.moat-title{font-size:.78rem;font-weight:600;color:var(--tl);margin-bottom:.2rem;}
+.moat-body{font-size:.7rem;color:var(--ml);line-height:1.4;}
+
+/* ── S9 TEAM ── */
+#s9{background:var(--dark);}
+.s9wrap{flex:1;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+.s9L{padding:2.5rem 2rem 2.5rem 3.5rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--bd);}
+.s9h2{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;line-height:1.05;margin-bottom:.9rem;color:var(--td);}
+.s9h2 em{color:var(--red);font-style:italic;}
+.founder{background:var(--dark2);border:1px solid var(--bd);border-radius:12px;padding:1.3rem;margin-bottom:.75rem;}
+.founder-name{font-size:1.1rem;font-weight:700;color:var(--td);margin-bottom:.15rem;}
+.founder-title{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem;}
+.founder-bio{font-size:.78rem;color:var(--md);line-height:1.55;}
+.s9R{padding:2rem 3rem 2rem 2.5rem;display:flex;flex-direction:column;justify-content:center;gap:.7rem;}
+.adv-title{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--md);margin-bottom:.3rem;}
+.why-items{display:flex;flex-direction:column;gap:.55rem;}
+.why-item{display:flex;align-items:flex-start;gap:.75rem;padding:.8rem 1rem;background:var(--dark2);border:1px solid var(--bd);border-radius:8px;}
+.why-num{font-family:'DM Mono',monospace;font-size:.75rem;font-weight:500;color:var(--red);flex-shrink:0;min-width:22px;margin-top:.1rem;}
+.why-text{font-size:.78rem;color:var(--md);line-height:1.45;}
+.why-text strong{color:var(--td);}
+
+/* ── S10 ASK ── */
+#s11{background:var(--dark);}
+.s11bg{position:absolute;inset:0;background:radial-gradient(ellipse at 25% 55%,rgba(221,29,29,.07) 0%,transparent 50%),radial-gradient(ellipse at 80% 25%,rgba(221,29,29,.04) 0%,transparent 45%);}
+.s11wrap{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+.s11L{padding:2.5rem 2rem 2.5rem 3.5rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--bd);}
+.s11h2{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;line-height:1.0;margin-bottom:.9rem;color:var(--td);}
+.s10h2 em{color:var(--red);font-style:italic;}
+.s11sub{font-size:.9rem;color:var(--md);line-height:1.7;margin-bottom:1.75rem;}
+.ask-amount{background:rgba(221,29,29,.08);border:1px solid rgba(221,29,29,.25);border-radius:12px;padding:1.4rem 1.6rem;margin-bottom:1.2rem;}
+.ask-label{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--md);margin-bottom:.4rem;}
+.ask-val{font-family:'DM Mono',monospace;font-size:3.2rem;font-weight:500;color:var(--red);line-height:1;margin-bottom:.3rem;}
+.ask-sub{font-size:.75rem;color:var(--md);}
+.s11R{padding:2.5rem 3rem 2.5rem 2.5rem;display:flex;flex-direction:column;justify-content:center;gap:.7rem;}
+.use-title{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--md);margin-bottom:.5rem;}
+.use-item{display:flex;align-items:center;gap:.85rem;padding:.85rem 1.1rem;background:var(--dark2);border:1px solid var(--bd);border-radius:9px;}
+.use-pct{font-family:'DM Mono',monospace;font-size:1.3rem;font-weight:500;color:var(--red);min-width:52px;}
+.use-text{font-size:.8rem;color:var(--md);line-height:1.4;}
+.use-text strong{color:var(--td);}
+.s11contact{margin-top:.5rem;padding:.9rem 1.1rem;background:var(--dark3);border:1px solid var(--bd);border-radius:8px;text-align:center;}
+.s11cl{font-size:.56rem;color:#444;margin-bottom:.2rem;letter-spacing:.08em;text-transform:uppercase;}
+.s11ci{font-size:.82rem;color:var(--md);}
+.s10ci a{color:var(--red);text-decoration:none;}
+
+/* ── S10 NOT REPLACING JOBS ── */
+#s10{background:var(--bl);}
+.s10awrap{flex:1;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+.s10aL{padding:2.5rem 2rem 2.5rem 3.5rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--blight);}
+.s10aL .s10ah2{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;line-height:1.1;margin-bottom:.9rem;color:var(--tl);}
+.s10ah2 em{color:var(--red);font-style:italic;}
+.s10abody{font-size:.9rem;color:var(--ml);line-height:1.7;margin-bottom:1.3rem;}
+.shift-stat{background:var(--white);border:1px solid var(--blight);border-left:4px solid var(--red);border-radius:0 10px 10px 0;padding:1.1rem 1.4rem;margin-bottom:.75rem;}
+.shift-stat-v{font-family:'DM Mono',monospace;font-size:2rem;font-weight:500;color:var(--red);line-height:1;margin-bottom:.25rem;}
+.shift-stat-l{font-size:.78rem;color:var(--ml);line-height:1.4;}
+.s10aR{padding:2rem 3rem 2rem 2.5rem;display:flex;flex-direction:column;justify-content:center;gap:.6rem;}
+.shift-card{background:var(--white);border:1px solid var(--blight);border-radius:10px;padding:1rem 1.15rem;display:flex;align-items:flex-start;gap:.85rem;}
+.shift-arrow{display:flex;flex-direction:column;align-items:center;gap:.3rem;flex-shrink:0;}
+.shift-from{font-size:.65rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:.25rem .6rem;border-radius:4px;background:rgba(221,29,29,.08);color:var(--red);border:1px solid rgba(221,29,29,.15);white-space:nowrap;}
+.shift-to{font-size:.65rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:.25rem .6rem;border-radius:4px;background:rgba(26,158,92,.08);color:var(--gd);border:1px solid rgba(26,158,92,.2);white-space:nowrap;}
+.shift-icon{font-size:.75rem;color:var(--blight);}
+.shift-content{}
+.shift-title{font-size:.85rem;font-weight:600;color:var(--tl);margin-bottom:.2rem;}
+.shift-body{font-size:.75rem;color:var(--ml);line-height:1.45;}
+.shift-quote{background:rgba(221,29,29,.04);border:1px solid rgba(221,29,29,.15);border-radius:10px;padding:1.1rem 1.3rem;margin-top:.4rem;}
+.shift-quote-text{font-family:'Playfair Display',serif;font-size:.95rem;font-style:italic;color:var(--tl);line-height:1.55;margin-bottom:.35rem;}
+.shift-quote-attr{font-size:.68rem;color:var(--ml);}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck">
+
+<!-- S1 COVER -->
+<div class="slide active" id="s1">
+  <div class="s1bg"></div><div class="s1grid"></div>
+  <div class="s1wrap">
+    <div>
+      <div class="s1logo">VIRTEX<span>SOLUTIONS</span></div>
+      <div class="s1eye">Investor Presentation — Confidential</div>
+      <h1 class="s1h1">The AI Agency<br>Built for <em>Vertical</em><br>Real Estate.</h1>
+      <p class="s1sub">Virtex Solutions LLC is a managed AI receptionist agency targeting the $1.5 trillion U.S. real estate industry — deploying custom-built AI agents that answer every call, qualify every lead, and keep agents focused on closing.</p>
+      <div class="s1conf">
+        <div class="s1conf-dot"></div>
+        <span>Confidential — For Qualified Investors Only — May 2026</span>
+      </div>
+    </div>
+    <div class="s1right">
+      <div class="s1card"><div class="s1card-v">$47.5B</div><div class="s1card-l">Voice AI market projected by 2034 — growing at 34.8% CAGR (Market.us)</div></div>
+      <div class="s1card"><div class="s1card-v">1.5M</div><div class="s1card-l">Licensed Realtors in the U.S. — our primary addressable customer base</div></div>
+      <div class="s1card"><div class="s1card-v">62%</div><div class="s1card-l">of real estate calls go unanswered — the problem we solve, every day</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- S2 PROBLEM -->
+<div class="slide" id="s2">
+  <div class="s2wrap">
+    <div class="s2L">
+      <div class="tag lgt">The Problem</div>
+      <h2 class="s2h2">Real Estate Runs on<br><em>Speed.</em> Most Agents<br>Can't Keep Up.</h2>
+      <p class="s2body">The best agents are constantly on the move — showings, negotiations, closings. That activity is exactly where they should be. But it creates an unavoidable gap: the phone goes unanswered, and motivated buyers and sellers move on to whoever picks up first.</p>
+      <div class="s2stat">
+        <div class="s2stat-v">78%</div>
+        <div class="s2stat-l">of buyers choose the first agent who responds to their inquiry — speed of response is the single biggest competitive differentiator in real estate</div>
+      </div>
+      <div class="s2stat">
+        <div class="s2stat-v">85%</div>
+        <div class="s2stat-l">of callers who reach voicemail hang up without leaving a message and immediately call the next agent on their list</div>
+      </div>
+    </div>
+    <div class="s2R">
+      <div class="prob-card bad">
+        <div class="prob-icon">📵</div>
+        <div><div class="prob-title">62% of calls go unanswered</div><div class="prob-body">Agents are with clients, on showings, or in negotiations — exactly where they should be. But every unanswered call is a potential commission lost forever.</div></div>
+      </div>
+      <div class="prob-card bad">
+        <div class="prob-icon">⏱</div>
+        <div><div class="prob-title">Response time is everything</div><div class="prob-body">Lead conversion drops 80% after 5 minutes. Most agents can't respond within that window when they're actively working with clients. The market punishes the delay.</div></div>
+      </div>
+      <div class="prob-card bad">
+        <div class="prob-icon">🌙</div>
+        <div><div class="prob-title">40% of inquiries come after hours</div><div class="prob-body">Buyers and sellers browse listings evenings and weekends. That's when they call. That's when agents are off. Every after-hours call is a lead that goes somewhere else.</div></div>
+      </div>
+      <div class="prob-card bad">
+        <div class="prob-icon">💸</div>
+        <div><div class="prob-title">Human receptionists cost $47,800+/year</div><div class="prob-body">And still can't answer during lunch, after hours, or on weekends. Hiring human coverage solves part of the problem at a fraction of the value. Virtex solves all of it.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S3 SOLUTION -->
+<div class="slide" id="s3">
+  <div class="s3wrap">
+    <div class="s3L">
+      <div class="tag drk">The Solution</div>
+      <h2 class="s3h2">Sophia — The AI<br>Receptionist Built<br><em>Exclusively</em> for Real Estate.</h2>
+      <p class="s3body">Virtex Solutions builds and manages fully custom AI receptionists trained on each client's listings, agents, market area, and brand. We are not a platform — we are a managed service. We build, deploy, and maintain every agent ourselves. The client experiences zero friction.</p>
+      <div class="s3feat">
+        <div class="s3fi"><div class="s3fi-icon">📞</div><div class="s3fi-text"><strong>24/7 call answering</strong> — every inbound call answered instantly, professionally, by name</div></div>
+        <div class="s3fi"><div class="s3fi-icon">🏠</div><div class="s3fi-text"><strong>Real listing knowledge</strong> — Sophia knows active listings, prices, agent bios, area details</div></div>
+        <div class="s3fi"><div class="s3fi-icon">🎯</div><div class="s3fi-text"><strong>Intelligent routing</strong> — buyers to buyer specialists, sellers to listing agents, investors to the right person</div></div>
+        <div class="s3fi"><div class="s3fi-icon">📅</div><div class="s3fi-text"><strong>Appointment follow-up</strong> — incoming confirmations and missed appointment re-engagement, automated</div></div>
+        <div class="s3fi"><div class="s3fi-icon">📋</div><div class="s3fi-text"><strong>Post-call transcripts</strong> — full lead summaries delivered to the agent's email after every call</div></div>
+      </div>
+    </div>
+    <div class="s3R">
+      <div class="diff-card">
+        <div class="diff-label">Why Managed vs. Platform</div>
+        <div class="diff-val">Agents don't buy software. They buy outcomes. Virtex handles every build, every update, every optimization. The agent just <em>answers fewer calls</em> — and closes more deals.</div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-label">Vertical Specialization</div>
+        <div class="diff-val">Generic AI tools can't talk about a specific listing in Cape Haze or route a seller lead to the right agent at a Punta Gorda brokerage. <em>Sophia can.</em> Vertical specialization is the moat.</div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-label">White-Glove Delivery</div>
+        <div class="diff-val">From onboarding form to live in 48 hours. Our team builds, tests, and manages every AI agent. <em>Zero technical burden</em> on the client — ever.</div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-label">The ROI Case</div>
+        <div class="diff-val">At an $8,500 average commission, one recovered deal per month covers <em>21 months</em> of Virtex at the Agent plan price. The pitch writes itself.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S4 MARKET -->
+<div class="slide" id="s4">
+  <div class="s4wrap">
+    <div class="s4top">
+      <div>
+        <div class="tag lgt">Market Opportunity</div>
+        <h2 class="s4h2">A $47.5B Market<br>with <em>Zero</em> Vertical Leaders.</h2>
+      </div>
+      <p class="s4sub">The voice AI agent market is growing at 34.8% CAGR and projected to reach $47.5 billion by 2034. Real estate — with 1.5 million agents and 102,000 brokerages — is one of the largest, most call-dependent industries in the country, and has no purpose-built AI receptionist solution at scale today.</p>
+    </div>
+    <div class="mkt-grid">
+      <div class="mkt-card tam">
+        <div class="mkt-label">TAM — Total Addressable Market</div>
+        <div class="mkt-val">$7.2B</div>
+        <div class="mkt-desc">1.5M U.S. Realtors × $399/mo average revenue = $7.2B annual opportunity in real estate alone. Expand to additional verticals (legal, medical, home services) and TAM exceeds $40B.</div>
+      </div>
+      <div class="mkt-card sam">
+        <div class="mkt-label">SAM — Serviceable Addressable Market</div>
+        <div class="mkt-val">$720M</div>
+        <div class="mkt-desc">Targeting the top 10% of active agents and teams — those with sufficient call volume to generate clear, immediate ROI. Approximately 150,000 agents in our primary sweet spot.</div>
+      </div>
+      <div class="mkt-card som">
+        <div class="mkt-label">SOM — Year 3 Target</div>
+        <div class="mkt-val">$7.2M</div>
+        <div class="mkt-desc">1,500 active agents/teams by Year 3 at $399–$999/mo average. Achievable with focused outbound sales, referral flywheel, and brokerage-level enterprise deals.</div>
+      </div>
+    </div>
+    <div class="mkt-sub">
+      <div class="ms"><div class="ms-v">1.5M</div><div class="ms-l">Licensed Realtors in the U.S. (NAR, Feb 2025)</div></div>
+      <div class="ms"><div class="ms-v">102K</div><div class="ms-l">Real estate brokerages nationwide — enterprise targets</div></div>
+      <div class="ms"><div class="ms-v">34.8%</div><div class="ms-l">CAGR of global voice AI agents market through 2034</div></div>
+      <div class="ms"><div class="ms-v">$47.5B</div><div class="ms-l">Projected voice AI market size by 2034 (Market.us)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- S5 BUSINESS MODEL -->
+<div class="slide" id="s5">
+  <div class="s5wrap">
+    <div class="tag drk">Business Model</div>
+    <h2 class="s5h2">Recurring Revenue.<br><em>High Retention.</em> Low Churn.</h2>
+    <p class="s5sub">100% recurring monthly revenue with a one-time setup fee. No contracts — clients stay because the product delivers.</p>
+    <div class="bm-grid">
+      <div class="bm-card">
+        <div class="bm-tier">Tier 1</div>
+        <div class="bm-name">Agent</div>
+        <div class="bm-price">$399<span style="font-size:1rem;color:var(--md);font-weight:400;">/mo</span></div>
+        <div class="bm-price-sub">$499 one-time setup · Single agent</div>
+        <div class="bm-div"></div>
+        <div class="bm-row"><span class="bm-row-l">Annual recurring revenue</span><span class="bm-row-v green">$4,788</span></div>
+        <div class="bm-row"><span class="bm-row-l">Setup revenue (one-time)</span><span class="bm-row-v">$499</span></div>
+        <div class="bm-row"><span class="bm-row-l">Target client profile</span><span class="bm-row-v">Solo agents</span></div>
+        <div class="bm-row"><span class="bm-row-l">Primary pitch angle</span><span class="bm-row-v">1 deal covers 21 months</span></div>
+        <div class="bm-note">Easiest entry point. High volume target. Lowest friction to close.</div>
+      </div>
+      <div class="bm-card featured">
+        <div class="bm-tier">Tier 2 — Sweet Spot</div>
+        <div class="bm-name">Team</div>
+        <div class="bm-price">$299<span style="font-size:1rem;color:var(--md);font-weight:400;">/agent/mo</span></div>
+        <div class="bm-price-sub">$899 one-time setup · 3–5 agents</div>
+        <div class="bm-div"></div>
+        <div class="bm-row"><span class="bm-row-l">Min. annual recurring (3 agents)</span><span class="bm-row-v green">$10,764</span></div>
+        <div class="bm-row"><span class="bm-row-l">Max. annual recurring (5 agents)</span><span class="bm-row-v green">$17,940</span></div>
+        <div class="bm-row"><span class="bm-row-l">Setup revenue (one-time)</span><span class="bm-row-v">$899</span></div>
+        <div class="bm-row"><span class="bm-row-l">Primary pitch angle</span><span class="bm-row-v">Never miss a lead</span></div>
+        <div class="bm-note">Highest LTV. Lower churn — team dependency creates stickiness.</div>
+      </div>
+      <div class="bm-card">
+        <div class="bm-tier">Tier 3</div>
+        <div class="bm-name">Brokerage</div>
+        <div class="bm-price" style="font-size:1.8rem;">From $250<span style="font-size:.9rem;color:var(--md);font-weight:400;">/agent</span></div>
+        <div class="bm-price-sub">Negotiated setup · 6+ agents · Custom</div>
+        <div class="bm-div"></div>
+        <div class="bm-row"><span class="bm-row-l">Example: 10-agent brokerage</span><span class="bm-row-v green">$30,000/yr</span></div>
+        <div class="bm-row"><span class="bm-row-l">Example: 25-agent brokerage</span><span class="bm-row-v green">$75,000/yr</span></div>
+        <div class="bm-row"><span class="bm-row-l">Setup revenue (one-time)</span><span class="bm-row-v">Negotiated</span></div>
+        <div class="bm-row"><span class="bm-row-l">Sales cycle</span><span class="bm-row-v">Discovery call + demo</span></div>
+        <div class="bm-note">Enterprise contracts. Highest revenue per client. Strategic growth lever.</div>
+      </div>
+    </div>
+    <div class="bm-bot">
+      <div class="bb"><div class="bb-v">~85%</div><div class="bb-l">Estimated gross margin (SaaS-like structure)</div></div>
+      <div class="bb"><div class="bb-v">60 days</div><div class="bb-l">Cancellation notice required — built-in retention window</div></div>
+      <div class="bb"><div class="bb-v">$6,200</div><div class="bb-l">Average estimated annual revenue per client (blended)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- S6 TRACTION + ROADMAP -->
+<div class="slide" id="s6">
+  <div class="s6wrap">
+    <div class="s6L">
+      <div class="tag lgt">Traction & Roadmap</div>
+      <h2 class="s6h2">Built From<br>Scratch. <em>Infrastructure</em><br>Ready to Scale.</h2>
+      <p class="s6body">Virtex was built in a concentrated sprint. In less than 90 days, we have gone from concept to fully operational infrastructure — legal entity, AI agents, CRM, sales system, lead pipeline, and pricing. We are ready to sell.</p>
+      <div class="trac-items">
+        <div class="ti"><div class="ti-icon">🏢</div><div><div class="ti-title">LLC Filed & Operational</div><div class="ti-body">Virtex Solutions LLC registered in Florida. EIN obtained. Business banking in progress. Service agreement finalized.</div></div></div>
+        <div class="ti"><div class="ti-icon">🤖</div><div><div class="ti-title">AI Infrastructure Built</div><div class="ti-body">Full GHL CRM build, Voice AI agent (Sophia) trained and live, onboarding system complete, post-call transcript workflow active.</div></div></div>
+        <div class="ti"><div class="ti-icon">🎯</div><div><div class="ti-title">Lead Pipeline Active</div><div class="ti-body">Python-based Google Places scraper built, 250+ HVAC/RE leads identified in SW Florida, outreach cadence developed.</div></div></div>
+        <div class="ti"><div class="ti-icon">📄</div><div><div class="ti-title">Full Sales Stack Ready</div><div class="ti-body">Pricing sheet, pitch deck, ROI calculator, onboarding form, service agreement, and referral partner program all complete.</div></div></div>
+      </div>
+    </div>
+    <div class="s6R">
+      <div class="road-title">Growth Roadmap</div>
+      <div class="road-item"><div class="road-q">Q2 2026</div><div class="road-text"><strong>First 10 paying clients.</strong> Direct outreach to SW Florida RE agents and teams. Brokerage demo walk-ins. Referral partner activation.</div></div>
+      <div class="road-item"><div class="road-q">Q3 2026</div><div class="road-text"><strong>25 clients. First enterprise brokerage signed.</strong> A2P 10DLC registered. Paid Meta/Google lead gen launched. Referral flywheel active.</div></div>
+      <div class="road-item"><div class="road-q">Q4 2026</div><div class="road-text"><strong>50+ clients. $25K+ MRR.</strong> Second vertical launched (legal or medical). First hire — sales or ops. Automated onboarding pipeline.</div></div>
+      <div class="road-item"><div class="road-q">2027</div><div class="road-text"><strong>150+ clients. $75K+ MRR.</strong> National RE expansion. Third vertical. Channel partner program. Series A or strategic acquisition.</div></div>
+      <div class="road-item"><div class="road-q">2028</div><div class="road-text"><strong>500+ clients. $250K+ MRR.</strong> Platform partnership (Coldwell Banker, KW, RE/MAX). White-label opportunity. Exit or growth round.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- S7 FINANCIALS -->
+<div class="slide" id="s7">
+  <div class="s7wrap">
+    <div class="tag drk">Financial Projections</div>
+    <h2 class="s7h2">Conservative Projections.<br><em>High-Margin</em> Recurring Revenue.</h2>
+    <p class="s7sub">Based on blended $6,200 average annual revenue per client. ~85% gross margin. All figures are projections.</p>
+    <div class="fin-grid">
+      <div class="fin-card accent">
+        <div class="fin-title">Monthly Recurring Revenue — Growth Trajectory</div>
+        <div class="mrr-bar-wrap">
+          <div class="mrr-bars">
+            <div class="mrr-row">
+              <div class="mrr-label">Month 3</div>
+              <div class="mrr-track"><div class="mrr-fill" style="width:4%;background:rgba(221,29,29,.4);">$2k</div></div>
+              <div class="mrr-val">$2,000</div>
+            </div>
+            <div class="mrr-row">
+              <div class="mrr-label">Month 6</div>
+              <div class="mrr-track"><div class="mrr-fill" style="width:12%;background:rgba(221,29,29,.5);">$7k</div></div>
+              <div class="mrr-val">$7,000</div>
+            </div>
+            <div class="mrr-row">
+              <div class="mrr-label">Month 9</div>
+              <div class="mrr-track"><div class="mrr-fill" style="width:22%;background:rgba(221,29,29,.65);">$14k</div></div>
+              <div class="mrr-val">$14,000</div>
+            </div>
+            <div class="mrr-row">
+              <div class="mrr-label">Year 1 End</div>
+              <div class="mrr-track"><div class="mrr-fill" style="width:40%;background:var(--red);">$25k</div></div>
+              <div class="mrr-val">$25,000</div>
+            </div>
+            <div class="mrr-row">
+              <div class="mrr-label">Year 2 End</div>
+              <div class="mrr-track"><div class="mrr-fill" style="width:70%;background:var(--red);">$75k</div></div>
+              <div class="mrr-val">$75,000</div>
+            </div>
+            <div class="mrr-row">
+              <div class="mrr-label">Year 3 End</div>
+              <div class="mrr-track"><div class="mrr-fill" style="width:100%;background:var(--red);">$600k</div></div>
+              <div class="mrr-val">$600,000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.85rem;">
+        <div class="fin-card">
+          <div class="fin-title">Unit Economics — Agent Plan</div>
+          <div class="unit-block">
+            <div class="ub-row"><span class="ub-l">Monthly revenue per client</span><span class="ub-v">$399</span></div>
+            <div class="ub-row"><span class="ub-l">Est. gross margin</span><span class="ub-v green">~85%</span></div>
+            <div class="ub-row"><span class="ub-l">Gross profit per client / mo</span><span class="ub-v green">~$339</span></div>
+            <div class="ub-row"><span class="ub-l">Setup fee (one-time)</span><span class="ub-v">$499</span></div>
+            <div class="ub-row"><span class="ub-l">Est. CAC (outbound model)</span><span class="ub-v">~$150–300</span></div>
+            <div class="ub-row"><span class="ub-l">CAC payback period</span><span class="ub-v green">&lt; 1 month</span></div>
+            <div class="ub-row"><span class="ub-l">12-month LTV (Agent)</span><span class="ub-v green">$4,788+</span></div>
+          </div>
+        </div>
+        <div class="fin-card">
+          <div class="fin-title">3-Year Summary</div>
+          <div class="proj-row"><span class="proj-label">Year 1 — Clients / ARR</span><span class="proj-val">~50 / $310K</span></div>
+          <div class="proj-row"><span class="proj-label">Year 2 — Clients / ARR</span><span class="proj-val green">~150 / $930K</span></div>
+          <div class="proj-row"><span class="proj-label">Year 3 — Clients / ARR</span><span class="proj-val green">~500 / $3.1M</span></div>
+          <div class="proj-row"><span class="proj-label">Gross Margin (est.)</span><span class="proj-val green">~85%</span></div>
+          <div class="proj-row"><span class="proj-label">Revenue model</span><span class="proj-val">100% recurring</span></div>
+          <div class="proj-row"><span class="proj-label">Churn protection</span><span class="proj-val">60-day notice</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S8 COMPETITIVE -->
+<div class="slide" id="s8">
+  <div class="s8wrap">
+    <div class="tag lgt">Competitive Landscape</div>
+    <h2 class="s8h2">No One Is Doing<br>This <em>For Real Estate.</em></h2>
+    <p class="s8sub">The AI receptionist category is growing rapidly — but it's dominated by horizontal platforms that require agents to build and manage their own AI. Virtex is a fully managed, vertically specialized service.</p>
+    <div class="comp-table-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th class="vx">Virtex Solutions</th>
+            <th>Vapi / Retell / Generic AI</th>
+            <th>Ruby Receptionists</th>
+            <th>Traditional Answering Svcs</th>
+            <th>Human Receptionist</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Real estate vertical training</td><td class="vx"><span class="chk">✓</span> Built-in</td><td><span class="crs">—</span> DIY only</td><td><span class="part">◐</span> Generic</td><td><span class="crs">—</span> None</td><td><span class="crs">—</span> None</td></tr>
+          <tr><td>Listing knowledge base</td><td class="vx"><span class="chk">✓</span> Every client</td><td><span class="crs">—</span> Build yourself</td><td><span class="crs">—</span> No</td><td><span class="crs">—</span> No</td><td><span class="part">◐</span> Maybe</td></tr>
+          <tr><td>Managed — zero client effort</td><td class="vx"><span class="chk">✓</span> 100%</td><td><span class="crs">—</span> Self-serve only</td><td><span class="chk">✓</span> Yes</td><td><span class="chk">✓</span> Yes</td><td><span class="part">◐</span> Partial</td></tr>
+          <tr><td>Agent routing intelligence</td><td class="vx"><span class="chk">✓</span> Built-in</td><td><span class="crs">—</span> Build yourself</td><td><span class="crs">—</span> No</td><td><span class="crs">—</span> No</td><td><span class="part">◐</span> Limited</td></tr>
+          <tr><td>24/7 coverage</td><td class="vx"><span class="chk">✓</span> Always</td><td><span class="chk">✓</span> Yes</td><td><span class="chk">✓</span> Yes</td><td><span class="chk">✓</span> Yes</td><td><span class="crs">—</span> Business hours</td></tr>
+          <tr><td>Post-call transcripts</td><td class="vx"><span class="chk">✓</span> Automated</td><td><span class="part">◐</span> Configure</td><td><span class="crs">—</span> No</td><td><span class="crs">—</span> No</td><td><span class="crs">—</span> No</td></tr>
+          <tr><td>Annual cost</td><td class="vx"><span class="chk">✓</span> $4,788–$17K</td><td><span class="part">◐</span> Variable</td><td>$12,000+</td><td>$6,000–$12,000</td><td><span class="crs">—</span> $47,800+</td></div></tr>
+          <tr><td>Live in 48 hours</td><td class="vx"><span class="chk">✓</span> Guaranteed</td><td><span class="crs">—</span> Weeks of DIY</td><td><span class="chk">✓</span> Fast</td><td><span class="chk">✓</span> Fast</td><td><span class="crs">—</span> Hire + train</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="moat">
+      <div class="moat-card"><div class="moat-icon">🏆</div><div class="moat-title">Vertical Depth</div><div class="moat-body">Real estate-only focus means deeper training data, better routing logic, and more relevant features than any horizontal competitor.</div></div>
+      <div class="moat-card"><div class="moat-icon">🔧</div><div class="moat-title">Managed Service</div><div class="moat-body">We build and manage everything. Agents don't buy software — they buy a result. That's a fundamentally different and stickier relationship.</div></div>
+      <div class="moat-card"><div class="moat-icon">🔁</div><div class="moat-title">Referral Flywheel</div><div class="moat-body">$150 referral credit incentivizes clients to bring in peers. Real estate networks are tight — one brokerage client can unlock dozens of agent referrals.</div></div>
+      <div class="moat-card"><div class="moat-icon">📈</div><div class="moat-title">Data Compounding</div><div class="moat-body">Every call handled makes Sophia better for the next agent. Proprietary call data and RE-specific training becomes a compounding advantage over time.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- S9 TEAM -->
+<div class="slide" id="s9">
+  <div class="s9wrap">
+    <div class="s9L">
+      <div class="tag drk">The Team</div>
+      <h2 class="s9h2">Operators First.<br>Builders <em>Second.</em></h2>
+      <div class="founder">
+        <div class="founder-name">Christian Rush &amp; Chance Holder</div>
+        <div class="founder-title">Co-Founders — Virtex Solutions LLC</div>
+        <div class="founder-bio">Christian and Chance share responsibility across every facet of the business — sales, client delivery, AI configuration, operations, and strategy. Both founders are actively involved in building each client's AI agent, managing accounts, and driving growth. This is a true co-founder partnership: no silos, no handoffs, full accountability across the board.</div>
+      </div>
+      <div class="founder">
+        <div class="founder-name">What We Both Do</div>
+        <div class="founder-title">Build · Sell · Deliver · Optimize</div>
+        <div class="founder-bio">Every AI agent we deploy is built, tested, and monitored by one of us personally. Every sales conversation is led by one of us directly. We are the product, the sales team, and the account management team — until the business scales to the point where hiring is the right move. That hands-on approach is our earliest competitive advantage.</div>
+      </div>
+    </div>
+    <div class="s9R">
+      <div class="adv-title">Why This Team Wins</div>
+      <div class="why-items">
+        <div class="why-item"><div class="why-num">01</div><div class="why-text"><strong>Full-stack execution.</strong> Both founders can build and sell. No dependency on outside developers or agencies to deliver the product.</div></div>
+        <div class="why-item"><div class="why-num">02</div><div class="why-text"><strong>Speed to market.</strong> Complete operational infrastructure built in under 90 days. Most early-stage startups spend 12+ months reaching this point.</div></div>
+        <div class="why-item"><div class="why-num">03</div><div class="why-text"><strong>Located in Southwest Florida.</strong> The highest-density real estate market in the country. Our first clients are within driving distance.</div></div>
+        <div class="why-item"><div class="why-num">04</div><div class="why-text"><strong>Vertical focus.</strong> We chose real estate deliberately — high commissions, high call volume, low tech adoption, and a clear, defensible ROI story.</div></div>
+        <div class="why-item"><div class="why-num">05</div><div class="why-text"><strong>Capital-efficient model.</strong> No physical infrastructure. Managed service model scales with revenue. First hire can be funded by 15–20 clients.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S10 NOT REPLACING JOBS -->
+<div class="slide" id="s10">
+  <div class="s10awrap">
+    <div class="s10aL">
+      <div class="tag lgt">Our Philosophy</div>
+      <h2 class="s10ah2">We're Not <em>Replacing</em><br>Anyone. We're<br>Creating Opportunity.</h2>
+      <p class="s10abody">Virtex doesn't eliminate the front desk — it eliminates the bottleneck. When an AI handles inbound calls, the receptionist, coordinator, or admin who was answering phones is freed to do higher-value work: client follow-up, transaction coordination, marketing support, and relationship management. The company gains more capacity without adding headcount. The employee gains more meaningful work. Everyone wins.</p>
+      <div class="shift-stat">
+        <div class="shift-stat-v">~40 hrs/mo</div>
+        <div class="shift-stat-l">Average time real estate office staff spend on inbound call handling, scheduling, and follow-up — time that Virtex returns to the business immediately</div>
+      </div>
+      <div class="shift-stat">
+        <div class="shift-stat-v">$0 added cost</div>
+        <div class="shift-stat-l">The same team. More capacity. No new hires needed to grow — Virtex scales your existing staff by eliminating the lowest-value work from their day</div>
+      </div>
+    </div>
+    <div class="s10aR">
+      <div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ml);margin-bottom:.5rem;">From Phone Answering → To High-Value Work</div>
+      <div class="shift-card">
+        <div class="shift-arrow">
+          <div class="shift-from">Before</div>
+          <div class="shift-icon">↓</div>
+          <div class="shift-to">After</div>
+        </div>
+        <div class="shift-content">
+          <div class="shift-title">Inbound Call Handling → Client Relationship Management</div>
+          <div class="shift-body">Staff who spent hours answering routine buyer inquiries and FAQs are now focused on nurturing existing client relationships — the work that actually drives referrals and repeat business.</div>
+        </div>
+      </div>
+      <div class="shift-card">
+        <div class="shift-arrow">
+          <div class="shift-from">Before</div>
+          <div class="shift-icon">↓</div>
+          <div class="shift-to">After</div>
+        </div>
+        <div class="shift-content">
+          <div class="shift-title">Appointment Chasing → Transaction Coordination</div>
+          <div class="shift-body">Manual follow-up calls and rescheduling are handled automatically. Staff redirect that time into coordinating closings, managing paperwork, and supporting agents through active transactions.</div>
+        </div>
+      </div>
+      <div class="shift-card">
+        <div class="shift-arrow">
+          <div class="shift-from">Before</div>
+          <div class="shift-icon">↓</div>
+          <div class="shift-to">After</div>
+        </div>
+        <div class="shift-content">
+          <div class="shift-title">Reactive Phone Coverage → Proactive Marketing Support</div>
+          <div class="shift-body">Instead of waiting for the phone to ring, staff now support listing presentations, social content, open house coordination, and community outreach — work that grows the business.</div>
+        </div>
+      </div>
+      <div class="shift-quote">
+        <div class="shift-quote-text">"Virtex doesn't take a seat at the table — it pulls up a new chair. The same team, doing more meaningful work, generating more revenue."</div>
+        <div class="shift-quote-attr">The Virtex Philosophy — Christian Rush, Co-Founder</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S11 THE ASK -->
+<div class="slide" id="s11">
+  <div class="s11bg"></div>
+  <div class="s11wrap">
+    <div class="s11L">
+      <div class="tag drk">The Ask</div>
+      <h2 class="s11h2">We Are Raising<br>Our <em>Seed</em><br>Round.</h2>
+      <p class="s11sub">Virtex Solutions is raising its first outside capital to accelerate sales, hire our first team member, and expand to a second vertical. The infrastructure is built. The product is live. We are ready to grow.</p>
+      <div class="ask-amount">
+        <div class="ask-label">Seeking</div>
+        <div class="ask-val">$150,000</div>
+        <div class="ask-sub">Seed round — SAFE or convertible note · Pre-money valuation to be discussed</div>
+      </div>
+      <div class="s11contact">
+        <div class="s11cl">Contact</div>
+        <div class="s11ci"><a href="mailto:christian@virtexsolutions.io">christian@virtexsolutions.io</a> · <a href="tel:+16027770644">602-777-0644</a> · <a href="https://virtexsolutions.io">virtexsolutions.io</a></div>
+      </div>
+    </div>
+    <div class="s11R">
+      <div class="use-title">Use of Funds</div>
+      <div class="use-item"><div class="use-pct">40%</div><div class="use-text"><strong>Sales & Marketing — $60K.</strong> Paid lead generation (Meta/Google), trade show presence, and outbound sales infrastructure to reach 50 clients within 12 months.</div></div>
+      <div class="use-item"><div class="use-pct">25%</div><div class="use-text"><strong>First Hire — $37.5K.</strong> Sales or operations hire to handle inbound leads, client onboarding, and account management as volume grows.</div></div>
+      <div class="use-item"><div class="use-pct">20%</div><div class="use-text"><strong>Technology & Infrastructure — $30K.</strong> GHL enterprise plan, AI platform costs, telephony, and tooling to support 100+ active clients.</div></div>
+      <div class="use-item"><div class="use-pct">10%</div><div class="use-text"><strong>Second Vertical Launch — $15K.</strong> Research, build, and go-to-market for a second industry vertical (legal, medical, or home services) by Q4 2026.</div></div>
+      <div class="use-item"><div class="use-pct">5%</div><div class="use-text"><strong>Legal & Operations — $7.5K.</strong> IP protection, contract expansion, accounting setup, and operational compliance as we scale.</div></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<div class="nav">
+  <button class="nb" onclick="go(-1)">‹</button>
+  <div id="dots"></div>
+  <button class="nb" onclick="go(1)">›</button>
+  <div class="nl" id="nl">1/11</div>
+</div>
+
+<script>
+const T=11;let c=1;
+function bd(){const el=document.getElementById('dots');for(let i=1;i<=T;i++){const d=document.createElement('div');d.className='nd'+(i===1?' on':'');d.onclick=()=>gt(i);el.appendChild(d);}}
+function gt(n){const p=document.getElementById('s'+c);p.classList.remove('active');p.classList.add('exit');setTimeout(()=>p.classList.remove('exit'),500);c=Math.max(1,Math.min(T,n));document.getElementById('s'+c).classList.add('active');document.querySelectorAll('.nd').forEach((d,i)=>d.classList.toggle('on',i===c-1));document.getElementById('nl').textContent=c+'/'+T;document.getElementById('progress').style.width=(c/T*100)+'%';}
+function go(d){gt(c+d);}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);});
+let tx=0;document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)go(dx<0?1:-1);},{passive:true});
+bd();document.getElementById('progress').style.width=(1/T*100)+'%';
+</script>
+</body>
+</html>
